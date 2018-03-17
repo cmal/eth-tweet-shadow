@@ -5,7 +5,7 @@
    [day8.re-frame.http-fx]
    #_[com.smxemail.re-frame-cookie-fx]
    [ajax.core :as ajax]
-   [re-frame.core :refer [reg-event-fx reg-event-db path trim-v
+   [re-frame.core :refer [reg-event-fx reg-event-db reg-sub path trim-v
                           after debug reg-fx console dispatch] :as r]
    [cljs-web3.core :as web3]
    [cljs-web3.eth :as web3-eth]
@@ -14,8 +14,7 @@
    [goog.string :as gstr]
    [goog.string.format]
    [district0x.re-frame.web3-fx]
-   [tweet.handlers]
-   [tweet.subs]))
+   [tweet.utils :as u]))
 
 (def interceptors [(when ^boolean js/goog.DEBUG debug)
                    trim-v])
@@ -28,8 +27,8 @@
    (merge
     {:db         db/default-db
      :http-xhrio {:method          :get
-                  :uri             (gst/format "./contracts/build/%s.abi"
-                                               (get-in db/default-db [:contract :name]))
+                  :uri             (gstr/format "./contracts/build/%s.abi"
+                                                (get-in db/default-db [:contract :name]))
                   :timeout         6000
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success      [:contract/abi-loaded]
@@ -139,8 +138,8 @@
  interceptors
  (fn [{:keys [db]} [on-success]]
    {:http-xhrio {:method          :get
-                 :uri             (gstring/format "/contracts/build/%s.json"
-                                                  (get-in db [:contract :name]))
+                 :uri             (gstr/format "/contracts/build/%s.json"
+                                               (get-in db [:contract :name]))
                  :timeout         6000
                  :response-format (ajax/json-response-format {:keywords? true})
                  :on-success      on-success

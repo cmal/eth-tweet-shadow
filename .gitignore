@@ -5,3 +5,7 @@ target/
 package-lock.json
 TODO.org
 app/views/
+#*
+*#
+.nrepl-port
+public/js

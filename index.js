@@ -2,7 +2,7 @@ var express = require('express');
 var glob = require('glob');
 
 module.exports = function(app, config) {
-  app.use(express.static(config.root + '/target'));
+  app.use(express.static(config.root + '/public'));
 
   // views
   app.set('views', config.root + '/app/views');

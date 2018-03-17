@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
+    "bignumber": "^1.1.0",
     "create-react-class": "^15.6.3",
     "ejs": "^2.5.7",
     "express": "^4.16.3",

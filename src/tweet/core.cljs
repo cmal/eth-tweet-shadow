@@ -6,17 +6,19 @@
             [tweet.events]
             [tweet.history :as hst]
             [tweet.routes :as routes]
+            [tweet.views :as views]
             ))
 
 
 (enable-console-print!)
 
-(def pages
-  {:app #'app})
+#_(def pages
+    {:app #'views/app})
 
 (defn page []
   [:div
-   [(pages @(rf/subscribe [:page]))]])
+   #_[(pages @(rf/subscribe [:page]))]
+   [#'views/app]])
 
 (defn mount-components []
   (rf/clear-subscription-cache!)

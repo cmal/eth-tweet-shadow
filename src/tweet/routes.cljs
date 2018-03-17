@@ -1,4 +1,4 @@
-(ns events.cljs
+(ns tweet.routes
   (:require [secretary.core :as secretary]
             [reagent.core :as r]
             [re-frame.core :as rf]))
@@ -10,6 +10,6 @@
   (secretary/defroute
     app-path
     "/app"
-    "query-params"
+    [query-params]
     (let [{:keys []} query-params]
       )))

@@ -1,0 +1,7 @@
+node_modules/
+target/
+.shadow-cljs/
+.git
+package-lock.json
+TODO.org
+app/views/

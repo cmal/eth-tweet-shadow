@@ -1,0 +1,22 @@
+{
+  "name": "eth-tweet-shadow",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "create-react-class": "^15.6.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "glob": "^7.1.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "web3": "^0.20.6"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.2.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yu Zhao",
+  "license": "ISC"
+}

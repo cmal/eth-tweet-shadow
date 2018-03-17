@@ -1,0 +1,20 @@
+* eth-tweet-shadow
+
+** why
+
+use node app to serve =shadow-cljs= compiled js app.
+
+
+** arch
+
+*** server
+use node/express MVC, its the server.
+
+
+*** static files
+
+use =shadow-cljs= to build js files
+
+** how to start app
+
+node app.js

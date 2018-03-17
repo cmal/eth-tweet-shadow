@@ -1,15 +1,15 @@
 * eth-tweet-shadow
 
+A web3.js app using =shadow-cljs= as compiler and =node.js= as server.
+
 ** why
 
 use node app to serve =shadow-cljs= compiled js app.
 
-
 ** arch
 
 *** server
-use node/express MVC, its the server.
-
+Server use node/express MVC.
 
 *** static files
 
@@ -17,4 +17,7 @@ use =shadow-cljs= to build js files
 
 ** how to start app
 
-node app.js
+#+BEGIN_SRC bash
+$ node app.js
+$ shadow-cljs watch tweet
+#+END_SRC

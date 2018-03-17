@@ -13,7 +13,7 @@
    [tweet.db :as db]
    [goog.string :as gstr]
    [goog.string.format]
-   [madvas.re-frame.web3-fx]
+   [district0x.re-frame.web3-fx]
    [tweet.handlers]
    [tweet.subs]))
 

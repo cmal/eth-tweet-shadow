@@ -18,8 +18,8 @@
   #_[com.taoensso/timbre "4.10.0"]
   [hiccups "0.3.0"]
   [thheller/shadow-cljsjs "0.0.7"]
-  [cljs-web3 "0.16.0-0"]
-  [madvas.re-frame/web3-fx "0.1.0"]
+  [cljs-web3 "0.19.0-0-9"]
+  [district0x.re-frame/web3-fx "1.0.3"]
 
   #_  [devcards "0.2.4"]]
 

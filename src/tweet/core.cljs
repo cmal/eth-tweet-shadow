@@ -25,7 +25,8 @@
   (r/render [#'page] (.getElementById js/document "app")))
 
 (defn ^:export init []
-  (rf/dispatch-sync [:initialize])
+  (rf/dispatch-sync [:initialize-db])
+  (rf/dispatch-sync [:initialize-web3])
   (load-interceptors!)
   (routes/mount-app-routes)
   (hst/hook-browser-navigation!)

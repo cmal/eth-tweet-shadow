@@ -1,6 +1,6 @@
 ;; shadow-cljs configuration
 {:source-paths
- ["src"]
+ ["src" "/Users/yuzhao/gits/re-frame-web3-fx/src"]
 
  :dependencies
  [[org.clojure/clojurescript "1.9.946"]

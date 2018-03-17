@@ -9,3 +9,5 @@ app/views/
 *#
 .nrepl-port
 public/js
+*.DS_Store
+public/contracts/build/

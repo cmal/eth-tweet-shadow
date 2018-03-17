@@ -30,3 +30,6 @@
 
 (defn format-date [date]
   (tf/unparse-local (tf/formatters :rfc822) (to-default-time-zone (to-date-time date))))
+
+(defn indexed [data]
+  (map-indexed (fn [a b] [a b]) data))

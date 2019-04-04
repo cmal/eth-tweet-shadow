@@ -28,6 +28,6 @@
   (rf/dispatch-sync [:initialize-db])
   (rf/dispatch-sync [:initialize-web3])
   (load-interceptors!)
-  (routes/mount-app-routes)
+  #_(routes/mount-app-routes)
   (hst/hook-browser-navigation!)
   (mount-components))

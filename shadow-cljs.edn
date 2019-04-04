@@ -31,8 +31,8 @@
                                      :prepend "(function(){"
                                      :append  "}).call(this)"}}
           :devtools         {:preloads          [re-frisk.preload]
-                             :autoload          true
                              :use-document-host true
                              :repl-host         "localhost"
+                             :autoload          true
                              :after-load        tweet.core/mount-components}
           :compiler-options {:externs []}}}}

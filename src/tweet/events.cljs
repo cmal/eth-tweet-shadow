@@ -39,12 +39,11 @@
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success      [:contract/abi-loaded]
                   :on-failure      [:log-error]}}
-    (when (:provides-web3? db)
-      {:web3/call
-       {:web3 (:web3 db)
-        :fns  [{:fn         web3-eth/accounts
-                :on-success [:blockchain/my-addresses-loaded]
-                :on-error   [:log-error]}]}}))))
+    {:web3/call
+     {:web3 (:web3 db)
+      :fns  [{:fn         web3-eth/accounts
+              :on-success [:blockchain/my-addresses-loaded]
+              :on-error   [:log-error]}]}})))
 
 (reg-event-fx
  :blockchain/my-addresses-loaded
@@ -70,7 +69,7 @@
    (console :log ":abi-loaded")
    (let [web3              (:web3 db)
          contract-instance (web3-eth/contract-at web3 abi (:address (:contract db)))]
-     (console :log contract-instance)
+     #_(console :log contract-instance)
      {:db (assoc-in db [:contract :instance] contract-instance)
 
       :web3/watch-events
@@ -132,40 +131,6 @@
  (fn [{:keys [db]} []]
    (console :log ":send")
    (let [{:keys [name text address]} (:new-tweet db)]
-     #_(prn
-        (doseq [{:keys [:fn :instance :args :tx-opts :on-success :on-error :on-tx-hash :on-tx-hash-error
-                        :on-tx-receipt :on-tx-error :on-tx-success]}
-                (remove nil? [{:instance         (:instance (:contract db))
-                               :fn               :add-tweet
-                               :args             [name text]
-                               :tx-opts          {:from address
-                                                  :gas  tweet-gas-limit}
-                               :on-tx-hash       [:new-tweet/confirmed]
-                               :on-tx-hash-error [:log-error]
-                               :on-tx-success    [:new-tweet/success]
-                               :on-tx-error      [:log-error]
-                               :on-tx-receipt    [:new-tweet/transaction-receipt-loaded]}])]
-          (if instance
-            (if tx-opts
-              (;;apply web3-eth/contract-call
-               prn "if if"
-               (concat [instance fn]
-                       args
-                       [tx-opts]
-                       [{:web3             (:web3 db)
-                         :on-tx-hash       on-tx-hash
-                         :on-tx-hash-error on-tx-hash-error
-                         :on-tx-receipt    on-tx-receipt
-                         :on-tx-success    on-tx-success
-                         :on-tx-error      on-tx-error}]))
-              (;;apply web3-eth/contract-call
-               prn "inner if"
-               #_(concat [instance fn]
-                         args
-                         [(dispach-fn on-success on-error)])))
-            (;;apply fn
-             prn "outter if"
-             #_(concat [(:web3 db)] args [(dispach-fn on-success on-error)])))))
      {:web3/call
       {:web3 (:web3 db)
        :fns  [{:instance         (:instance (:contract db))
@@ -177,8 +142,7 @@
                :on-tx-hash-error [:log-error]
                :on-tx-success    [:new-tweet/success]
                :on-tx-error      [:log-error]
-               :on-tx-receipt    [:new-tweet/transaction-receipt-loaded]}]}}
-     #_{})))
+               :on-tx-receipt    [:new-tweet/transaction-receipt-loaded]}]}})))
 
 (reg-event-db
  :new-tweet/confirmed
@@ -232,25 +196,25 @@
                :on-success [:contract/deployed]
                :on-error   [:log-error]}]}})))
 
-(reg-event-fx
- :blockchain/unlock-account
- interceptors
- (fn [{:keys [db]} [address password]]
-   (console :log ":unlock-account")
-   {:web3/call
-    {:web3 (:web3 db)
-     :fns  [{:fn         web3-personal/unlock-account
-             :args       [address password 999999]
-             :on-success [:blockchain/account-unlocked]
-             :on-error   [:log-error]}]}}))
+#_(reg-event-fx
+   :blockchain/unlock-account
+   interceptors
+   (fn [{:keys [db]} [address password]]
+     (console :log ":unlock-account")
+     {:web3/call
+      {:web3 (:web3 db)
+       :fns  [{:fn         web3-personal/unlock-account
+               :args       [address password 999999]
+               :on-success [:blockchain/account-unlocked]
+               :on-error   [:log-error]}]}}))
 
-(reg-event-fx
- :blockchain/account-unlocked
- interceptors
- (fn [{:keys [db]}]
-   (console :log ":account-unlocked")
-   (console :log "Account was unlocked.")
-   {}))
+#_(reg-event-fx
+   :blockchain/account-unlocked
+   interceptors
+   (fn [{:keys [db]}]
+     (console :log ":account-unlocked")
+     (console :log "Account was unlocked.")
+     {}))
 
 (reg-event-fx
  :contract/deployed
